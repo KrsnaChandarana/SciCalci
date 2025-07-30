@@ -3,7 +3,7 @@ from tkinter import ttk, messagebox
 import math
 import re
 import socket
-
+#practical 1
 class ScientificCalculator:
     def __init__(self, root):
         self.root = root
