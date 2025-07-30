@@ -11,11 +11,11 @@ class ScientificCalculator:
         self.root.geometry("500x700")
         self.root.resizable(False, False)
         
-        # RPC Configuration
+        # RPC Configuration i.e setup for remote procedure call or local calculation
         self.rpc_mode = tk.BooleanVar(value=False)
         self.server_address = ('localhost', 12345)
         
-        # Calculator State
+        # Calculator State i.e tracks current input, history, and angle mode
         self.current_input = tk.StringVar()
         self.history = []
         self.is_radians = True
@@ -24,10 +24,9 @@ class ScientificCalculator:
         self.create_display_frame()
         self.create_mode_toggle()
         self.create_buttons_frame()
-        
-        # Start with calculator view
         self.show_calculator()
 
+    # top section of the calculator input and history display
     def create_display_frame(self):
         frame = ttk.Frame(self.root)
         frame.pack(pady=10, padx=10, fill=tk.X)
@@ -39,23 +38,25 @@ class ScientificCalculator:
                              font=('Helvetica', 24), justify=tk.RIGHT, state='readonly')
         self.entry.pack(fill=tk.X, ipady=10)
 
+    #Create mode toggle for remote/local calculation
+    # This allows the user to switch between remote procedure call (RPC) and local calculation
     def create_mode_toggle(self):
         frame = ttk.Frame(self.root)
         frame.pack(pady=5, fill=tk.X)
         ttk.Checkbutton(frame, text="Remote Mode", variable=self.rpc_mode).pack(side=tk.LEFT)
 
+    #grid layout
     def create_buttons_frame(self):
         self.buttons_frame = ttk.Frame(self.root)
         self.buttons_frame.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
         
-        # Updated button layout with expanded "=" and "Hist" buttons
         buttons = [
             ('⌫', 'CE', 'C', '±', '(', ')', 'π', 'e'),
             ('sin', 'cos', 'tan', 'x²', 'x^y', '10^x', 'e^x', '√'),
             ('7', '8', '9', '/', 'sinh', 'cosh', 'tanh', 'mod'),
             ('4', '5', '6', '*', 'log', 'deg', 'rad', 'hex'),
-            ('1', '2', '3', '-', 'Hist', 'Hist', 'bin', 'bin'),  # Expanded Hist button
-            ('0', '.', '=', '=', '=', '=', '+', '+')  # Expanded = button
+            ('1', '2', '3', '-', 'Hist', 'Hist', 'bin', 'bin'),  
+            ('0', '.', '=', '=', '=', '=', '+', '+') 
         ]
         
         # Special column spans for expanded buttons
